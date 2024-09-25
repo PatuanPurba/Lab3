@@ -18,8 +18,7 @@ import org.json.JSONObject;
  */
 public class JSONTranslator implements Translator {
 
-    // TODO Task: pick appropriate instance variables for this class
-    private Map<String, JSONObject> countrycode;
+    private final Map<String, JSONObject> countrycode;
 
     /**
      * Constructs a JSONTranslator using data from the sample.json resources file.
@@ -42,8 +41,6 @@ public class JSONTranslator implements Translator {
             JSONArray jsonArray = new JSONArray(jsonString);
             countrycode = new HashMap<String, JSONObject>();
 
-            // TODO Task: use the data in the jsonArray to populate your instance variables
-            //            Note: this will likely be one of the most substantial pieces of code you write in this lab.
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject country = jsonArray.getJSONObject(i);
                 countrycode.put(country.optString("alpha3"), country);
@@ -57,8 +54,6 @@ public class JSONTranslator implements Translator {
 
     @Override
     public List<String> getCountryLanguages(String country) {
-        // TODO Task: return an appropriate list of language codes,
-        //            but make sure there is no aliasing to a mutable object
         ArrayList<String> result = new ArrayList<>();
 
         JSONObject temp = countrycode.get(country);
@@ -73,8 +68,6 @@ public class JSONTranslator implements Translator {
 
     @Override
     public List<String> getCountries() {
-        // TODO Task: return an appropriate list of country codes,
-        //            but make sure there is no aliasing to a mutable object
         ArrayList<String> result = new ArrayList<>();
         for (String key: this.countrycode.keySet()) {
             JSONObject temp = this.countrycode.get(key);
@@ -90,7 +83,6 @@ public class JSONTranslator implements Translator {
     public String translate(String country, String language) {
         JSONObject temp = this.countrycode.get(country);
         String result = temp.optString(language);
-        // TODO Task: complete this method using your instance variables as needed
         if ("".equals(result)) {
             return null;
         }

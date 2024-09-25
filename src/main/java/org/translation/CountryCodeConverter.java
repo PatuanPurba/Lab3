@@ -5,18 +5,16 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.List;
-
+import java.util.Map;
 
 /**
  * This class provides the service of converting countries codes to their names.
  */
 public class CountryCodeConverter {
 
-    // TODO Task: pick appropriate instance variable(s) to store the data necessary for this class
-    private Map<String, String> countrycode;
-    private Map<String, String> codecountry;
+    private final Map<String, String> countrycode;
+    private final Map<String, String> codecountry;
 
     /**
      * Default constructor which will load the countries codes from "countries-codes.txt"
@@ -37,7 +35,6 @@ public class CountryCodeConverter {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
 
-            // TODO Task: use lines to populate the instance variable(s)
             countrycode = new HashMap<>();
             codecountry = new HashMap<>();
             for (String line : lines.subList(1, lines.size())) {
@@ -61,7 +58,6 @@ public class CountryCodeConverter {
      * @return the name of the countries corresponding to the code
      */
     public String fromCountryCode(String code) {
-        // TODO Task: update this code to use an instance variable to return the correct value
         return codecountry.get(code.toUpperCase());
     }
 
@@ -71,7 +67,6 @@ public class CountryCodeConverter {
      * @return the 3-letter code of the countries
      */
     public String fromCountry(String country) {
-        // TODO Task: update this code to use an instance variable to return the correct value
         return countrycode.get(country).toLowerCase();
     }
 
@@ -80,7 +75,6 @@ public class CountryCodeConverter {
      * @return how many countries are included in this code converter.
      */
     public int getNumCountries() {
-        // TODO Task: update this code to use an instance variable to return the correct value
         return countrycode.size();
     }
 }
